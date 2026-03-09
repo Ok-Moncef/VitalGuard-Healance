@@ -1,0 +1,345 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "last_updated": "2025-03-09",
+    "description": "Expanded MedGuard knowledge base with rich medical text for RAG embedding"
+  },
+
+  "vital_signs": {
+    "heart_rate": {
+      "unit": "bpm",
+      "ranges": {
+        "critical_low":  { "max": 40,  "label": "Critical Low"  },
+        "warning_low":   { "min": 41,  "max": 59,  "label": "Warning Low"   },
+        "normal":        { "min": 60,  "max": 100, "label": "Normal"        },
+        "warning_high":  { "min": 101, "max": 129, "label": "Warning High"  },
+        "critical_high": { "min": 130, "label": "Critical High" }
+      },
+      "notes": "Resting HR. Athletes may have lower baseline (40-60 bpm) without pathology."
+    },
+    "spo2": {
+      "unit": "%",
+      "ranges": {
+        "critical_low":  { "max": 90,  "label": "Critical Low — Severe Hypoxia" },
+        "warning_low":   { "min": 91,  "max": 94, "label": "Warning Low — Mild Hypoxia" },
+        "normal":        { "min": 95,  "max": 100,"label": "Normal" }
+      },
+      "notes": "SpO2 below 90% requires immediate intervention."
+    },
+    "systolic_bp": {
+      "unit": "mmHg",
+      "ranges": {
+        "critical_low":  { "max": 70,  "label": "Critical Low — Shock" },
+        "warning_low":   { "min": 71,  "max": 89, "label": "Warning Low — Hypotension" },
+        "normal":        { "min": 90,  "max": 120,"label": "Normal" },
+        "warning_high":  { "min": 121, "max": 179,"label": "Warning High — Elevated" },
+        "critical_high": { "min": 180, "label": "Critical High — Hypertensive Crisis" }
+      }
+    },
+    "diastolic_bp": {
+      "unit": "mmHg",
+      "ranges": {
+        "critical_low":  { "max": 40,  "label": "Critical Low"  },
+        "warning_low":   { "min": 41,  "max": 59, "label": "Warning Low"   },
+        "normal":        { "min": 60,  "max": 80, "label": "Normal"        },
+        "warning_high":  { "min": 81,  "max": 119,"label": "Warning High"  },
+        "critical_high": { "min": 120, "label": "Critical High" }
+      }
+    },
+    "temperature": {
+      "unit": "°C",
+      "ranges": {
+        "critical_low":  { "max": 35.0, "label": "Critical Low — Hypothermia" },
+        "warning_low":   { "min": 35.1, "max": 36.0, "label": "Warning Low" },
+        "normal":        { "min": 36.1, "max": 37.2, "label": "Normal" },
+        "warning_high":  { "min": 37.3, "max": 39.4, "label": "Warning High — Fever" },
+        "critical_high": { "min": 39.5, "label": "Critical High — Hyperthermia" }
+      }
+    },
+    "respiratory_rate": {
+      "unit": "breaths/min",
+      "ranges": {
+        "critical_low":  { "max": 8,  "label": "Critical Low — Respiratory Depression" },
+        "warning_low":   { "min": 9,  "max": 11, "label": "Warning Low — Bradypnea" },
+        "normal":        { "min": 12, "max": 20, "label": "Normal" },
+        "warning_high":  { "min": 21, "max": 29, "label": "Warning High — Tachypnea" },
+        "critical_high": { "min": 30, "label": "Critical High — Severe Respiratory Distress" }
+      }
+    },
+    "blood_glucose": {
+      "unit": "mg/dL",
+      "ranges": {
+        "critical_low":  { "max": 50,  "label": "Critical Low — Severe Hypoglycemia" },
+        "warning_low":   { "min": 51,  "max": 69, "label": "Warning Low — Hypoglycemia" },
+        "normal":        { "min": 70,  "max": 140,"label": "Normal" },
+        "warning_high":  { "min": 141, "max": 299,"label": "Warning High — Hyperglycemia" },
+        "critical_high": { "min": 300, "label": "Critical High — Diabetic Emergency / DKA" }
+      }
+    }
+  },
+
+  "condition_patterns": [
+    {
+      "id": "hypoxia", "name": "Hypoxia / Respiratory Distress", "severity": "WARNING_TO_CRITICAL",
+      "indicators": { "spo2": "< 94", "respiratory_rate": "> 22" },
+      "description": "Low blood oxygen combined with fast breathing suggests the body is struggling to oxygenate. May indicate respiratory distress, asthma attack, pneumonia, or early heart failure."
+    },
+    {
+      "id": "shock", "name": "Circulatory Shock", "severity": "CRITICAL",
+      "indicators": { "heart_rate": "> 120", "systolic_bp": "< 90" },
+      "description": "Rapid heart rate with dangerously low blood pressure. Organs are not receiving adequate blood flow. Life-threatening — requires immediate emergency response."
+    },
+    {
+      "id": "cardiac_event", "name": "Suspected Cardiac Event (Heart Attack)", "severity": "CRITICAL",
+      "indicators": { "heart_rate": "> 110", "systolic_bp": "> 150 or < 90", "spo2": "< 94" },
+      "description": "Combination of abnormal HR, BP, and low SpO2 may indicate myocardial infarction. Time-critical — every minute counts."
+    },
+    {
+      "id": "cardiac_arrest", "name": "Cardiac Arrest", "severity": "CRITICAL",
+      "indicators": { "heart_rate": "< 30", "spo2": "< 80", "systolic_bp": "< 60" },
+      "description": "Near-absent vitals suggest cardiac arrest. Patient is likely unconscious and not breathing. CPR must begin immediately."
+    },
+    {
+      "id": "hypoglycemia", "name": "Hypoglycemia (Low Blood Sugar)", "severity": "WARNING_TO_CRITICAL",
+      "indicators": { "blood_glucose": "< 70", "heart_rate": "> 100" },
+      "description": "Low blood glucose with elevated HR. Patient may feel confused, shaky, or faint. Below 50 mg/dL is an emergency — brain function is at risk."
+    },
+    {
+      "id": "hyperglycemia_dka", "name": "Hyperglycemia / DKA", "severity": "WARNING_TO_CRITICAL",
+      "indicators": { "blood_glucose": "> 250", "respiratory_rate": "> 22" },
+      "description": "Very high glucose with fast breathing (Kussmaul breathing) may indicate DKA in diabetic patients. Requires urgent medical attention."
+    },
+    {
+      "id": "hypertensive_crisis", "name": "Hypertensive Crisis", "severity": "CRITICAL",
+      "indicators": { "systolic_bp": "> 180", "diastolic_bp": "> 120" },
+      "description": "Extremely high blood pressure can cause stroke, heart attack, or organ damage. Patient must rest and be seen by a doctor immediately."
+    },
+    {
+      "id": "sepsis", "name": "Suspected Sepsis", "severity": "CRITICAL",
+      "indicators": { "temperature": "> 39.0 or < 36.0", "heart_rate": "> 120", "respiratory_rate": "> 25" },
+      "description": "High/low temperature combined with fast HR and breathing is a classic sepsis triad. Sepsis is life-threatening and requires immediate hospitalization."
+    },
+    {
+      "id": "hypothermia", "name": "Hypothermia", "severity": "WARNING_TO_CRITICAL",
+      "indicators": { "temperature": "< 35.0" },
+      "description": "Body temperature is dangerously low. Core body functions begin to slow down. Critical below 32°C."
+    }
+  ],
+
+  "recommendations": {
+    "low_spo2_mild": {
+      "applies_to": "spo2 between 91-94%", "severity": "WARNING",
+      "actions": [
+        "Open windows or doors to improve ventilation and fresh air flow",
+        "Have the patient sit upright or lean slightly forward — do not lay flat",
+        "Remove any tight clothing around chest or neck",
+        "Avoid any physical exertion",
+        "If patient has a prescribed inhaler, assist them in using it",
+        "Monitor SpO2 closely every 2-3 minutes",
+        "If SpO2 drops below 90% or patient feels worse — call emergency services immediately"
+      ]
+    },
+    "low_temperature": {
+      "applies_to": "temperature between 35.0-36.0°C", "severity": "WARNING",
+      "actions": [
+        "Move patient to a warm indoor environment",
+        "Apply warm blankets, focus on covering the torso and neck",
+        "If conscious and able to swallow: offer warm (not hot) drinks",
+        "Avoid direct heat sources on skin",
+        "Monitor temperature every 10 minutes"
+      ]
+    },
+    "high_temperature_fever": {
+      "applies_to": "temperature between 38.0-39.4°C", "severity": "WARNING",
+      "actions": [
+        "Remove excess clothing and heavy blankets",
+        "Apply cool damp cloth to forehead, neck, and wrists",
+        "Encourage fluid intake — water or oral rehydration solution",
+        "Ensure the room is well-ventilated",
+        "Paracetamol (acetaminophen) can help reduce fever if not contraindicated",
+        "Seek medical advice if fever persists more than 48 hours or exceeds 39.5°C"
+      ]
+    },
+    "high_blood_pressure": {
+      "applies_to": "systolic BP between 140-179 mmHg", "severity": "WARNING",
+      "actions": [
+        "Have the patient rest in a quiet, calm environment",
+        "Encourage slow, deep breathing (4 seconds in, 4 seconds out)",
+        "Avoid caffeine, stimulants, and physical activity",
+        "Do NOT give extra blood pressure medication without medical instruction",
+        "Recheck BP in 15-20 minutes",
+        "If BP exceeds 180 mmHg — call emergency services"
+      ]
+    },
+    "low_glucose_mild": {
+      "applies_to": "blood glucose between 51-69 mg/dL", "severity": "WARNING",
+      "actions": [
+        "Give 15g of fast-acting carbohydrates immediately: fruit juice (150ml), glucose tablets, or 3-4 teaspoons of sugar",
+        "Have patient sit or lie down",
+        "Recheck blood glucose after 15 minutes",
+        "If glucose remains low: repeat carbohydrate intake",
+        "Once glucose normalizes: give a small snack to maintain levels",
+        "If patient becomes confused or loses consciousness — call emergency services and do NOT give anything orally"
+      ]
+    },
+    "high_respiratory_rate": {
+      "applies_to": "respiratory rate between 21-25 breaths/min", "severity": "WARNING",
+      "actions": [
+        "Ask patient to consciously slow their breathing",
+        "Guide them through diaphragmatic breathing: in for 4 seconds, hold 2 seconds, out for 6 seconds",
+        "Have patient sit upright",
+        "Reduce anxiety — stay calm, speak reassuringly",
+        "Monitor for worsening — if rate exceeds 28 or patient struggles, call emergency services"
+      ]
+    }
+  },
+
+  "emergency_protocols": {
+    "heart_attack": {
+      "condition": "Suspected Heart Attack",
+      "triggers": "Abnormal HR + elevated or low BP + low SpO2",
+      "call_emergency": true,
+      "steps": [
+        "Call emergency services (112 or local number) IMMEDIATELY",
+        "Have the patient stop all activity and sit or lie in a semi-reclined position",
+        "Loosen any tight clothing: collar, tie, belt",
+        "If conscious, not allergic to aspirin, and can swallow: give 300mg Aspirin — chew, not swallow whole",
+        "Stay with the patient, speak calmly — stress makes the heart work harder",
+        "Do not give food or water",
+        "If patient loses consciousness and stops breathing — begin CPR immediately"
+      ]
+    },
+    "cardiac_arrest": {
+      "condition": "Cardiac Arrest",
+      "triggers": "HR < 30, BP < 60, SpO2 < 80, unconscious, not breathing",
+      "call_emergency": true,
+      "steps": [
+        "Call emergency services IMMEDIATELY — put phone on speaker",
+        "Check consciousness: tap shoulders and shout 'Are you okay?'",
+        "Check breathing for no more than 10 seconds",
+        "If not breathing: begin CPR — place heel of hand on center of chest",
+        "Push down HARD and FAST — 5cm depth, 100-120 compressions per minute",
+        "After 30 compressions: give 2 rescue breaths (tilt head, pinch nose, seal mouth)",
+        "Repeat 30:2 cycle continuously until help arrives",
+        "If AED is nearby: use it — turn on and follow audio instructions",
+        "Do not stop CPR until paramedics take over"
+      ]
+    },
+    "severe_respiratory_distress": {
+      "condition": "Severe Hypoxia / Respiratory Distress",
+      "triggers": "SpO2 <= 90% or respiratory rate >= 30",
+      "call_emergency": true,
+      "steps": [
+        "Call emergency services immediately",
+        "Sit patient upright, leaning slightly forward (tripod position)",
+        "Open all windows and doors to maximize fresh air",
+        "Loosen tight clothing around chest and neck",
+        "If patient has a prescribed inhaler — help them use it now",
+        "Do NOT give food or water",
+        "If patient loses consciousness — place in recovery position on their side"
+      ]
+    },
+    "severe_hypoglycemia": {
+      "condition": "Severe Hypoglycemia",
+      "triggers": "Blood glucose < 50 mg/dL",
+      "call_emergency": true,
+      "steps": [
+        "Call emergency services if patient is confused, cannot swallow, or unconscious",
+        "If conscious and can swallow: give glucose gel, fruit juice, or sugary drink immediately",
+        "Do NOT give anything orally if unconscious — choking risk",
+        "If glucagon kit available and you are trained: administer it now",
+        "Place unconscious patient in recovery position",
+        "Recheck glucose every 5 minutes if meter available"
+      ]
+    },
+    "hypertensive_crisis": {
+      "condition": "Hypertensive Crisis",
+      "triggers": "Systolic BP >= 180 mmHg or diastolic >= 120 mmHg",
+      "call_emergency": true,
+      "steps": [
+        "Call emergency services",
+        "Stop all activity, sit or lie down in a quiet room",
+        "Loosen tight clothing",
+        "Keep environment calm — reduce noise, light, and stress",
+        "Do NOT give extra blood pressure medications without medical instruction",
+        "Watch for stroke symptoms: facial drooping, arm weakness, slurred speech",
+        "Do not give food, water, or stimulants"
+      ]
+    },
+    "sepsis": {
+      "condition": "Suspected Sepsis",
+      "triggers": "High/low temperature + HR > 120 + respiratory rate > 25",
+      "call_emergency": true,
+      "steps": [
+        "Call emergency services immediately — sepsis can become fatal within hours",
+        "Note the time symptoms started — critical for doctors",
+        "Keep patient warm and comfortable",
+        "Do not give food or water",
+        "Monitor breathing and consciousness continuously"
+      ]
+    }
+  },
+
+  "medical_articles": [
+    {
+      "id": "art_cardiac_arrest_bystander",
+      "title": "Bystander CPR and Cardiac Arrest Survival",
+      "tags": ["cardiac arrest", "CPR", "bystander", "defibrillator", "AED"],
+      "content": "Cardiac arrest occurs when the heart suddenly stops beating effectively. Without immediate intervention, brain damage begins within 4-6 minutes and death within 10 minutes. Bystander CPR can double or triple survival rates. The chain of survival includes: early recognition and calling emergency services, early CPR, early defibrillation with an AED, and advanced medical care. When performing CPR, push hard and fast on the center of the chest at a rate of 100-120 compressions per minute, allowing full chest recoil between compressions. Rescue breaths are important but chest compressions are the priority. An AED will analyze the heart rhythm and advise whether a shock is needed — it is safe and simple for untrained bystanders to use."
+    },
+    {
+      "id": "art_heart_attack_recognition",
+      "title": "Recognizing and Responding to a Heart Attack",
+      "tags": ["heart attack", "myocardial infarction", "chest pain", "aspirin", "symptoms"],
+      "content": "A heart attack (myocardial infarction) occurs when blood flow to part of the heart muscle is blocked. Common symptoms include chest pain or pressure (often described as squeezing or heaviness), pain radiating to the arm, jaw, or back, shortness of breath, sweating, nausea, and lightheadedness. Women may experience atypical symptoms such as unusual fatigue or abdominal pain. If a heart attack is suspected, call emergency services immediately — time is critical as every minute of delay means more heart muscle damage. Have the patient rest and, if not allergic, give 300mg of aspirin to chew. Do not give the patient food or water. Stay calm, reassure the patient, and monitor them closely. If they lose consciousness and stop breathing, begin CPR."
+    },
+    {
+      "id": "art_hypoglycemia_management",
+      "title": "Managing Hypoglycemia: From Mild to Severe",
+      "tags": ["hypoglycemia", "low blood sugar", "diabetes", "glucose", "insulin"],
+      "content": "Hypoglycemia occurs when blood glucose drops below 70 mg/dL. Mild hypoglycemia (51-69 mg/dL) causes shakiness, sweating, hunger, and anxiety. Moderate hypoglycemia causes confusion, difficulty concentrating, and irritability. Severe hypoglycemia (below 50 mg/dL) can cause seizures, loss of consciousness, and is life-threatening. For conscious patients who can swallow: give 15g of fast-acting carbohydrates such as 150ml fruit juice, glucose tablets, or sugary drinks. Recheck blood glucose after 15 minutes and repeat treatment if still low. For unconscious patients: do not give anything orally due to choking risk — call emergency services and administer glucagon if available and trained to do so. After recovery, give a small snack to prevent recurrence. Diabetic patients should always carry fast-acting glucose sources."
+    },
+    {
+      "id": "art_sepsis_recognition",
+      "title": "Early Recognition of Sepsis",
+      "tags": ["sepsis", "infection", "fever", "shock", "organ failure"],
+      "content": "Sepsis is a life-threatening emergency caused by the body's extreme response to infection. It can develop from any infection — pneumonia, urinary tract infections, skin infections, or abdominal infections. Warning signs include high fever (above 38.5°C) or abnormally low temperature (below 36°C), rapid heart rate above 120 bpm, fast breathing above 25 breaths per minute, confusion or disorientation, and pale or mottled skin. If sepsis progresses to septic shock, blood pressure drops dangerously low. Without urgent hospital treatment, sepsis can cause organ failure and death within hours. Any bystander who suspects sepsis should call emergency services immediately, note when symptoms started, keep the patient warm, and monitor consciousness and breathing continuously."
+    },
+    {
+      "id": "art_hypertensive_crisis",
+      "title": "Hypertensive Crisis: When Blood Pressure Becomes Dangerous",
+      "tags": ["hypertension", "high blood pressure", "stroke", "hypertensive crisis"],
+      "content": "A hypertensive crisis occurs when blood pressure rises to 180/120 mmHg or higher. It can be classified as a hypertensive urgency (no organ damage yet) or hypertensive emergency (organ damage occurring). Symptoms may include severe headache, blurred vision, chest pain, difficulty breathing, and confusion. A hypertensive emergency is a medical emergency — the patient must receive immediate hospital treatment. Bystanders should not attempt to rapidly lower blood pressure with extra medications as this can be dangerous. The patient should rest in a calm, quiet environment and avoid physical exertion, caffeine, and stress. Emergency services must be called. Watch carefully for stroke symptoms: sudden facial drooping, arm weakness, or slurred speech — these indicate a possible stroke and must be reported to emergency services immediately."
+    },
+    {
+      "id": "art_respiratory_distress",
+      "title": "Recognizing and Responding to Respiratory Distress",
+      "tags": ["breathing difficulty", "hypoxia", "SpO2", "asthma", "respiratory distress"],
+      "content": "Respiratory distress occurs when the body cannot get enough oxygen. Signs include a respiratory rate above 25 breaths per minute, SpO2 below 94%, use of neck and shoulder muscles to breathe, flaring nostrils, bluish lips or fingertips (cyanosis), and the patient being unable to speak in full sentences. Common causes include asthma attacks, anaphylaxis, pneumonia, pulmonary embolism, and heart failure. First-aid steps include sitting the patient upright and leaning slightly forward (tripod position), opening windows to improve air circulation, and loosening any tight clothing. If the patient has a prescribed inhaler, help them use it. Do not leave the patient alone. If SpO2 drops below 90% or the patient is struggling to breathe, call emergency services immediately."
+    },
+    {
+      "id": "art_shock_recognition",
+      "title": "Circulatory Shock: Recognition and First Aid",
+      "tags": ["shock", "low blood pressure", "hypotension", "circulation", "emergency"],
+      "content": "Circulatory shock occurs when the cardiovascular system fails to deliver adequate oxygen and nutrients to the body's organs. It is characterized by low blood pressure (systolic below 90 mmHg), rapid heart rate (above 120 bpm), rapid shallow breathing, pale cool clammy skin, confusion, and decreased urine output. Types include hypovolemic shock (from bleeding or fluid loss), cardiogenic shock (from heart failure), distributive shock (from sepsis or severe allergic reaction), and obstructive shock. All forms of shock are life-threatening emergencies. Bystanders should call emergency services immediately, lay the patient flat and elevate their legs (unless head or chest injury is suspected), keep them warm, and control any visible bleeding with direct pressure. Do not give food or water."
+    },
+    {
+      "id": "art_diabetes_emergencies",
+      "title": "Diabetic Emergencies: DKA and Hyperosmolar States",
+      "tags": ["diabetes", "DKA", "hyperglycemia", "ketoacidosis", "high blood sugar"],
+      "content": "Diabetic ketoacidosis (DKA) is a serious complication of diabetes caused by very high blood glucose (usually above 250 mg/dL) combined with a lack of insulin. The body breaks down fat for energy, producing ketones that make the blood acidic. Symptoms include excessive thirst and urination, nausea and vomiting, abdominal pain, fruity breath odor, rapid deep breathing (Kussmaul breathing), and confusion. DKA requires emergency hospital treatment with intravenous fluids and insulin. Bystanders should call emergency services, note glucose readings and symptoms, and keep the patient calm. Do not attempt to give insulin without medical training. A hyperosmolar hyperglycemic state (HHS) is a similar emergency in type 2 diabetics with even higher glucose levels but without acidosis — it also requires emergency care."
+    },
+    {
+      "id": "art_hypothermia_frostbite",
+      "title": "Hypothermia and Cold Exposure: Recognition and First Aid",
+      "tags": ["hypothermia", "cold exposure", "frostbite", "low temperature"],
+      "content": "Hypothermia occurs when core body temperature drops below 35°C. Mild hypothermia (32-35°C) causes shivering, confusion, and clumsiness. Moderate hypothermia (28-32°C) causes severe confusion, loss of coordination, and the patient may stop shivering. Severe hypothermia (below 28°C) can cause unconsciousness, cardiac arrest, and death. First aid involves moving the patient to a warm dry environment, removing wet clothing, and covering with blankets — focusing on the torso, neck, and head. Give warm (not hot) drinks if conscious and able to swallow. Do not rub limbs vigorously as this can drive cold blood to the core. Do not apply direct heat sources. For moderate to severe hypothermia, call emergency services immediately. Handle the patient gently as cold hearts are prone to arrhythmias with sudden movement."
+    },
+    {
+      "id": "art_vital_signs_overview",
+      "title": "Understanding Vital Signs in Emergency Assessment",
+      "tags": ["vital signs", "heart rate", "blood pressure", "SpO2", "temperature", "assessment"],
+      "content": "Vital signs are the most fundamental indicators of a patient's physiological status. Heart rate (60-100 bpm at rest) reflects cardiac output and stress response. Blood pressure (normal 90-120/60-80 mmHg) indicates circulatory adequacy. Oxygen saturation (SpO2, normal 95-100%) shows how well the lungs are oxygenating the blood. Body temperature (normal 36.1-37.2°C) reflects immune response and metabolic activity. Respiratory rate (12-20 breaths/min) indicates respiratory effort and neurological status. Blood glucose (70-140 mg/dL) is critical for brain and organ function. When multiple vital signs are abnormal simultaneously, it usually indicates a more serious systemic condition. A rapid heart rate combined with low blood pressure and low SpO2 is a particularly alarming combination suggesting cardiovascular or respiratory emergency requiring immediate intervention."
+    }
+  ]
+}
