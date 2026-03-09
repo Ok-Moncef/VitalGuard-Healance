@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Alert - Healance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00cbe6",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2123",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 md:px-10 lg:px-40">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Healance</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="Professional headshot of a male doctor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdVu-TRaG4c7lTFc0XG928xke5ZTsuE-ADZFMM403-w3BIrEJSNnrGNPdoMzYwelQxAKWBg5cPnCBi5cYy8CPJkOYQMvds2e4H2_0ha4Dc1ydKYd8jObvZFULVHWIY5lMr388oIu96tTf6szk_0EcEBSgpTg0DSH8e762r6Vy-5-bdvVKiRSV8qy7hkNJ9JmOIIthTO9FwKBPykR4SEu2leGyi1CCd94bvVZdhHagELYvEuAEdjpF4saWtFvqTsw6NYJuCCiB8M-k");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col md:flex-row lg:px-40 py-8 gap-8 px-6">
+<aside class="hidden md:flex flex-col w-64 gap-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Profile image of Dr. Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5iVHErko93eTSjutSZGTCnLT1iYFU987uU40OAq2l6dLTgvm4CMM7HRdWw5Vd1E9E1MBQK8-9mvf-9WC7WQmafm1-y6Rlb7wnzySyOHEe3h1pKySL5FYkPp9oBXtd8crsHwY8lbHY7sL3K9cXo5jQIWwbu0wgBt2gkym0W-qApQVwxuPNVsGziNY4Ze4OFG-FXkk8W4UBum4RPx5-6-lVxoR6RmRuqR_15wfTtk8NKoE7RxzvzOwReYHCyGEnkC03k7FZrJvHSCw");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-slate-100 text-base font-bold">Dr. Smith</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">On-call Physician</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary transition-colors border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="text-sm font-semibold">Active Alerts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-semibold">Patients List</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-sm font-semibold">Schedule</span>
+</a>
+</nav>
+</aside>
+<section class="flex-1 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-600 w-fit">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="text-xs font-bold uppercase tracking-wider">High Urgency</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight tracking-tight">Emergency Alert</h2>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Immediate response required for a critical cardiac event nearby.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-800">
+<div class="grid grid-cols-1 @container">
+<div class="w-full h-48 bg-slate-200 dark:bg-slate-800 relative">
+<div class="absolute inset-0 bg-center bg-cover" data-alt="Map view showing patient location" data-location="Chicago" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASAidve_OCzdvvciKfiCbh1zzI3Z1t7QOeg2GybigJZO0AWz-K1fJwlj3RPY1XE_DX9d4iczxw_DR0TvV27ahOXRgN9Isg6GJhM3EXheZivTINiYzJWyuT7bJ5ccfRPXhmDChPKnixFX8FheeCwunwc2WvZSnILa8XD3L0wUCBp6HBd3yxvyBOzY8RbExJoQCswn7CN0QBKyP8cUgIoGPxoFMawW1Naza_lrjtRkfLJPAfOVOIRSPBgD7bW8GvrBfiq8z6vQlfoFA");'>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm">
+<p class="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">distance</span>
+                                        0.8 miles away
+                                    </p>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="h-14 w-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-slate-400">person</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">John Doe</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Male, 58 years old â¢ ID: #HEAL-9921</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Reason for Alert</p>
+<p class="text-red-500 font-bold text-lg">Potential Cardiac Arrest</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Heart Rate</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-black text-red-500">142</span>
+<span class="text-xs font-medium text-slate-500">BPM</span>
+</div>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Blood Pressure</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-black text-slate-900 dark:text-white">185/110</span>
+</div>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">SpO2</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-black text-amber-500">91</span>
+<span class="text-xs font-medium text-slate-500">%</span>
+</div>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Temp</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-black text-slate-900 dark:text-white">98.6</span>
+<span class="text-xs font-medium text-slate-500">Â°F</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-600 dark:text-slate-400">Request expires in</p>
+<div class="flex items-center gap-2">
+<span class="text-2xl font-black text-primary">15</span>
+<span class="text-sm font-bold text-slate-400 uppercase">Seconds</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4 rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 pt-2">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                                        Accept Request
+                                    </button>
+<button class="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">cancel</span>
+                                        Decline
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-4 flex items-start gap-4">
+<div class="text-primary mt-1">
+<span class="material-symbols-outlined">info</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Nearby Support</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">An ambulance has been dispatched and is 4 minutes away from the patient's current location.</p>
+</div>
+</div>
+</section>
+</main></div>
+</div>
+</body></html>

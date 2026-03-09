@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Healance Live Emergency Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00cbe6",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2123",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header -->
+<header class="z-50 flex items-center justify-between bg-white/90 backdrop-blur-md border-b border-slate-200 px-6 py-3 shrink-0">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+<h2 class="text-xl font-bold tracking-tight text-slate-900">Healance</h2>
+</div>
+<div class="hidden md:flex items-center gap-2 px-4 py-1.5 bg-red-50 text-red-600 rounded-full border border-red-100">
+<span class="material-symbols-outlined text-sm animate-pulse fill-icon">emergency</span>
+<span class="text-xs font-bold uppercase tracking-wider">Live Emergency Response</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex flex-col items-end">
+<span class="text-sm font-semibold">Alex Johnson</span>
+<span class="text-xs text-slate-500">ID: HEA-9921-X</span>
+</div>
+<div class="h-10 w-10 rounded-full bg-slate-200 overflow-hidden border-2 border-primary" data-alt="User profile avatar of Alex Johnson">
+<img alt="Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7PKAsg1dbbzTTz2RslMfgQ1Oa-HiE1lsbp2Eh-IuxF1CEHYxf4_NOUyym9yCtBXMxDygKJd_vq9qmbnUi1vk7-nTm3pC-XUMdzR1vDTGaQURUbtTmRPtBnsKay6k5iN9ejIo7jHFUDpVivk4r7nIS79kLinWmuuMKPLpWX7ji4YF8LH8Kkiklo-EHzwOolQ15PoYKghLsxwsCq_6tEBF6n6x2O0Q5QVXLFzyxZ2T8N8djXzYi1qpUt0qJaGllLrRcNtDoVuNULn0"/>
+</div>
+</div>
+</header>
+<div class="relative flex flex-1 flex-col md:flex-row overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col w-20 bg-white border-r border-slate-200 py-6 items-center gap-8 shrink-0">
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium">Plan</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined fill-icon">location_on</span>
+<span class="text-[10px] font-medium border-b-2 border-primary pb-1">Emergency</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="text-[10px] font-medium">Records</span>
+</button>
+</aside>
+<!-- Main Map Area -->
+<main class="relative flex-1 bg-slate-100 overflow-hidden">
+<!-- Map Background Placeholder -->
+<div class="absolute inset-0 bg-cover bg-center grayscale-[0.2] opacity-80" data-alt="Modern light themed street map of a city area" data-location="San Francisco Downtown" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDy4phU28jpqXVf_Axrg-pro5H7RZD0hmZnA113zDirI38uIGbfA4w6p3aw7K0Ofh0njNg62JCW_V6pkx9ZgIXKuMab30EZ_h_NcFCJjrEc5guZxVFqzP0x5PVG3zG0PGWVT5C_0xI-jUx90SHZFO4p53FSyDgXCIVTQPVEHnxHCqAZX3AhGEnYHA72rgLjQlrEc2HN6S3oX3U3OXaFICNGFHWxWOWqqdxHkxTRcHYrVySoqAHZO7-X2t-BRPSUJuiGVAlMRMtR25Y');">
+</div>
+<!-- Map UI Overlays -->
+<div class="absolute top-6 left-6 right-6 flex flex-col gap-4 pointer-events-none">
+<div class="flex justify-between items-start">
+<!-- Search & Filter -->
+<div class="flex gap-2 pointer-events-auto">
+<div class="flex items-center bg-white shadow-xl rounded-xl border border-slate-200 px-4 py-2 w-64 lg:w-96">
+<span class="material-symbols-outlined text-slate-400 mr-2">search</span>
+<input class="border-none focus:ring-0 text-sm w-full bg-transparent" placeholder="Search facilities..." type="text"/>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="flex flex-col gap-2 pointer-events-auto">
+<div class="flex flex-col bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+<button class="p-3 hover:bg-slate-50 text-slate-600 border-b border-slate-100">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-3 hover:bg-slate-50 text-slate-600">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="p-3 bg-white rounded-xl shadow-xl border border-slate-200 text-primary pointer-events-auto">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Pins Container -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Patient Pin -->
+<div class="absolute top-[40%] left-[45%] flex flex-col items-center">
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/20 rounded-full animate-ping"></div>
+<div class="relative bg-primary text-white p-2 rounded-full shadow-lg border-4 border-white">
+<span class="material-symbols-outlined text-lg fill-icon">person_pin_circle</span>
+</div>
+</div>
+<div class="mt-2 bg-white px-3 py-1 rounded-full shadow-md border border-slate-200 pointer-events-auto">
+<p class="text-[10px] font-bold text-slate-900 whitespace-nowrap">My Location</p>
+</div>
+</div>
+<!-- Doctor Pin (Simulating movement) -->
+<div class="absolute top-[55%] left-[60%] flex flex-col items-center">
+<div class="relative">
+<div class="absolute -inset-6 bg-green-500/10 rounded-full"></div>
+<div class="relative bg-white p-1 rounded-full shadow-2xl border-2 border-green-500">
+<div class="w-12 h-12 rounded-full overflow-hidden" data-alt="Avatar of Dr. Sarah Mitchell moving on map">
+<img alt="Doctor" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-aenk-tzppdUI9M9DcVVUkzPqeiW0FOGVL-QqWkqgBDsLXfXDaGPm7GYUoBA6jBvrhE2ay1z9zOxPNUsJ6KWNPnyywGDh9emeYThRzCxqm7ynob227sGBzwcgyVjIwfK7mh9db1K0AITQbXK9lfc27HhPn5C24kZyg54iY3wghjEeGNm9rsCh9aOynEWGsQgooGeA4od4ca-ijsAvnZVtvHSKhbhe7QPJAJLSW10SDvbZMMQ_zBOfcPUDOapbr-_6dtvsmHIU12M"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 text-white p-0.5 rounded-full border-2 border-white">
+<span class="material-symbols-outlined text-[12px] fill-icon">medical_services</span>
+</div>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-lg shadow-lg pointer-events-auto">
+<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+<p class="text-[11px] font-bold text-white whitespace-nowrap">Dr. Mitchell â¢ 4 mins</p>
+</div>
+</div>
+</div>
+<!-- Bottom Action Cards -->
+<div class="absolute bottom-6 left-0 right-0 px-6 flex flex-col md:flex-row gap-4 items-end justify-center">
+<!-- Category Shortcuts -->
+<div class="hidden lg:flex gap-2 pointer-events-auto mb-4 self-center">
+<button class="flex items-center gap-2 bg-white/90 backdrop-blur px-4 py-2 rounded-xl shadow-lg border border-slate-200 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">local_hospital</span>
+<span class="text-xs font-bold text-slate-700">Hospitals</span>
+</button>
+<button class="flex items-center gap-2 bg-white/90 backdrop-blur px-4 py-2 rounded-xl shadow-lg border border-slate-200 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">local_pharmacy</span>
+<span class="text-xs font-bold text-slate-700">Pharmacies</span>
+</button>
+<button class="flex items-center gap-2 bg-white/90 backdrop-blur px-4 py-2 rounded-xl shadow-lg border border-slate-200 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">clinical_notes</span>
+<span class="text-xs font-bold text-slate-700">Clinics</span>
+</button>
+</div>
+<!-- Doctor Info Card -->
+<div class="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden pointer-events-auto">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-2xl bg-slate-100 overflow-hidden" data-alt="Portrait of Dr. Sarah Mitchell">
+<img alt="Doctor Sarah Mitchell" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBza08OX1wQ8hCURlKjnmLs_zirRlaygXTtgks-RHUyd0_RV7IHBUbOUnTEM34t_lVrcH3nNXQqgG8cOYo1PgUQjhrF9FH7_Qt28VJnLm7UsYPodiASrpJ0BOPI2__yOwJtPo9P5iV9V_ctHQ5gvtFPim4hFqPAR50J-2bl9Jg77DduVlZSYBPsFjKJ7K79pz9deUjE5V2SSmv7Pk_G6AYpIngqOJmkazM6VjPOU7vvz8Ax7HJCykxyAmwH-w9ZY5HfbcbuDEKUk4U"/>
+</div>
+<div class="absolute -top-2 -left-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                                        ETA 4m
+                                    </div>
+</div>
+<div class="flex flex-col">
+<h3 class="text-lg font-bold text-slate-900">Dr. Sarah Mitchell</h3>
+<p class="text-sm text-slate-500 font-medium">Cardiologist â¢ MD, Heart Care Clinic</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-yellow-400 text-sm fill-icon">star</span>
+<span class="text-xs font-bold text-slate-700">4.9</span>
+<span class="text-[10px] text-slate-400">(128 reviews)</span>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 p-2 rounded-xl">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="space-y-1.5">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-slate-400">
+<span>En Route</span>
+<span class="text-primary">0.8 miles away</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%] rounded-full"></div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">call</span>
+                                Call Doctor
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-slate-900/20">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+                                Message
+                            </button>
+</div>
+</div>
+<!-- Status Footer -->
+<div class="bg-slate-50 border-t border-slate-100 px-5 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-2 bg-green-500 rounded-full"></div>
+<span class="text-[11px] font-semibold text-slate-600">Dispatched from Central Hospital</span>
+</div>
+<button class="text-[11px] font-bold text-red-500 hover:underline">Cancel Request</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

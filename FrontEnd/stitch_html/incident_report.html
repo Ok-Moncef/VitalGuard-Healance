@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Healance - Incident Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#00cbe6",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f2123",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-screen w-full flex-col bg-white dark:bg-background-dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 md:px-10 py-3 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Healance</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Patients</a>
+<a class="text-slate-900 dark:text-slate-100 border-b-2 border-primary text-sm font-medium leading-normal" href="#">Reports</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="Professional profile photo of a male doctor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB053gJIynYOe0GT_cSQjGo7Yq6lAD_rlOKIOibI_IA9YQTeo7R_d244pzArys259PrpmXDUthtpbFvYBAX3RIrkIyQiSsowfsan77S1kM8cifUSqK65VIAzMzfPDPeMkyrzfHcTpG6CR1mr50Ic9Ct4EZ9xicJwMfVXjyjkhB-IjY1ydz3ejByvEstJDbXaQXd5IqDpNuxcL1qsbbeeZ3THhvPOTteXmxQ3qdASMWwgHZRdw0egzYfmtbKW62qmfgV8LvGzq2WztA");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8 px-4 md:px-10">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-8">
+<!-- Page Title -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-semibold text-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">description</span>
+                        Clinical Documentation
+                    </div>
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight tracking-[-0.033em]">Incident Report</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Detailed documentation of clinical intervention and patient response.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Left Column: Summary and Timeline -->
+<div class="md:col-span-2 flex flex-col gap-8">
+<!-- Intervention Summary Card -->
+<section class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">Intervention Summary</h2>
+</div>
+<div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1 p-3 bg-background-light dark:bg-background-dark rounded-lg">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase">Patient ID</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">#PX-8821</p>
+</div>
+<div class="flex flex-col gap-1 p-3 bg-background-light dark:bg-background-dark rounded-lg">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase">Patient Name</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">Sarah Jenkins</p>
+</div>
+<div class="flex flex-col gap-1 p-3 bg-background-light dark:bg-background-dark rounded-lg">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase">Intervention Type</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">Emergency Response</p>
+</div>
+<div class="flex flex-col gap-1 p-3 bg-background-light dark:bg-background-dark rounded-lg">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase">Status</p>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<p class="text-primary text-sm font-bold">In Progress</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Event Timeline -->
+<section class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">Event Timeline</h2>
+</div>
+<div class="p-6">
+<div class="relative flex flex-col gap-8 before:absolute before:left-[11px] before:top-2 before:h-[calc(100%-16px)] before:w-0.5 before:bg-slate-200 dark:before:bg-slate-700">
+<!-- Timeline Item 1 -->
+<div class="relative pl-10">
+<span class="absolute left-0 top-1 size-6 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-white dark:ring-slate-900">
+<span class="material-symbols-outlined text-[14px]">notifications_active</span>
+</span>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-slate-900 dark:text-slate-100 font-bold text-sm">Emergency Alert Triggered</h4>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium">10:42 AM</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm">Initial notification received from bedside monitoring system (Room 402).</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-10">
+<span class="absolute left-0 top-1 size-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 ring-4 ring-white dark:ring-slate-900">
+<span class="material-symbols-outlined text-[14px]">travel</span>
+</span>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-slate-900 dark:text-slate-100 font-bold text-sm">Team Response</h4>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium">10:45 AM</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm">Rapid response team arrived on site. Vitals stabilization initiated.</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-10">
+<span class="absolute left-0 top-1 size-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 ring-4 ring-white dark:ring-slate-900">
+<span class="material-symbols-outlined text-[14px]">medication</span>
+</span>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-slate-900 dark:text-slate-100 font-bold text-sm">Medication Administered</h4>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium">10:51 AM</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm">IV Epinephrine (0.5mg) administered as per ACLS protocols.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Medical Notes & Actions -->
+<div class="flex flex-col gap-6">
+<!-- Medical Notes Section -->
+<section class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight">Medical Notes</h2>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-medium">Clinical Observations</label>
+<textarea class="w-full h-48 p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none transition-all" placeholder="Enter detailed observations, patient response, and follow-up requirements..."></textarea>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-primary/5 rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-lg">info</span>
+<p class="text-slate-600 dark:text-slate-400 text-xs">Notes are automatically timestamped and signed by the active session user.</p>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 px-6 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span>
+                                Finalize &amp; Submit Report
+                            </button>
+<button class="w-full py-3 px-6 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                                Save as Draft
+                            </button>
+<button class="w-full py-3 px-6 bg-transparent border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-medium rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">close</span>
+                                Cancel
+                            </button>
+</div>
+<!-- Sidebar Info -->
+<div class="p-5 border border-dashed border-slate-300 dark:border-slate-700 rounded-xl bg-slate-50/50 dark:bg-slate-900/30">
+<h3 class="text-slate-900 dark:text-slate-100 text-sm font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                                Report Integrity
+                            </h3>
+<ul class="flex flex-col gap-2">
+<li class="text-slate-500 dark:text-slate-400 text-xs flex gap-2">
+<span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                    HIPAA Compliant storage
+                                </li>
+<li class="text-slate-500 dark:text-slate-400 text-xs flex gap-2">
+<span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                    Immutable audit trail
+                                </li>
+<li class="text-slate-500 dark:text-slate-400 text-xs flex gap-2">
+<span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                    Encryption at rest
+                                </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-8 px-10 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-slate-400 text-xs">Â© 2024 Healance Clinical Solutions. All incident reports are confidential medical records.</p>
+</footer>
+</div>
+</div>
+</body></html>

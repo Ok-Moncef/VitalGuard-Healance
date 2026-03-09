@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Healance | Doctor Navigation Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#00cbe6",
+                "background-light": "#f5f8f8",
+                "background-dark": "#0f2123",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 lg:px-10 py-3">
+<div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Healance</h2>
+</div>
+<div class="flex-1 max-w-xl hidden md:block px-8">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Search patients, rooms, or staff..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<div class="flex items-center gap-3 pl-1">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold leading-none">Dr. Julianne</p>
+<p class="text-[10px] text-slate-500 font-medium">On-call Surgeon</p>
+</div>
+<img class="size-9 rounded-full object-cover border-2 border-primary/20" data-alt="Professional portrait of a female doctor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnVKwdE9oTtbLHuW-PvL5CCc7Oa__zCVzojYaapy6NaLdBtvkwp0jryKBE_kJP3zZNEgOqUqqMalOYwI6usM6O3UiVH4A8mT0TYRTY3a9vDy5e0D38qSKbgQytVkjCGPjwujyX7sbUKQ5IvSHGo-27KE2Df3-4aolsyeMy1XNm4fzRP-jwWzkhIx1sqg5gpSXBlnp5LFm5QqFu_LHK5iVPKUQsOSK0LHjYlLPLjEuo-L1oJ92qU-EpwR2oUcNY9uZ-fMnW8Xc3qZY"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex-col hidden lg:flex">
+<nav class="p-4 space-y-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-sm font-semibold">Patient Map</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-sm font-medium">Live Vitals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="text-sm font-medium">Medical Records</span>
+</a>
+<div class="pt-4 pb-2 px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Alerts</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors" href="#">
+<span class="material-symbols-outlined">error</span>
+<span class="text-sm font-semibold">Emergency Dept</span>
+</a>
+</nav>
+<div class="mt-auto p-4">
+<div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl">
+<p class="text-xs font-semibold text-slate-500 mb-2">Shift Status</p>
+<div class="flex items-center gap-2 mb-3">
+<span class="size-2 bg-green-500 rounded-full animate-pulse"></span>
+<span class="text-sm font-bold">Active: 4h 12m</span>
+</div>
+<button class="w-full py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-xs font-bold hover:shadow-sm transition-all">Clock Out</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:flex-row overflow-hidden">
+<!-- Map Section -->
+<div class="flex-1 relative bg-slate-200 min-h-[400px]">
+<!-- Mock Map Background -->
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Blue-toned hospital architectural floor plan map" data-location="Hospital Interior Floor Plan" style="background-image: url('https://placeholder.pics/svg/300')"></div>
+<!-- Map Overlay Elements -->
+<div class="absolute inset-0 p-6 pointer-events-none">
+<div class="flex flex-col h-full justify-between">
+<!-- Search Bar on Map -->
+<div class="max-w-md w-full pointer-events-auto">
+<div class="bg-white dark:bg-slate-900 shadow-xl rounded-xl p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 ml-2">location_on</span>
+<input class="flex-1 border-none focus:ring-0 text-sm py-2" placeholder="Find room or ward..." type="text"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-xs font-bold">GO</button>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="flex flex-col gap-2 items-end pointer-events-auto">
+<div class="flex flex-col bg-white dark:bg-slate-900 rounded-lg shadow-lg overflow-hidden border border-slate-200 dark:border-slate-800">
+<button class="p-3 hover:bg-slate-50 dark:hover:bg-slate-800 border-b border-slate-100 dark:border-slate-800 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="p-3 bg-white dark:bg-slate-900 rounded-lg shadow-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Navigation Indicator/Pin -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+<div class="relative flex items-center justify-center">
+<div class="absolute size-24 bg-primary/20 rounded-full animate-ping"></div>
+<div class="size-6 bg-primary border-4 border-white rounded-full shadow-lg z-10"></div>
+</div>
+</div>
+<!-- Bottom Emergency Banner -->
+<div class="absolute bottom-6 left-6 right-6 pointer-events-auto">
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-2xl p-4 md:p-6 border-l-8 border-primary flex flex-wrap items-center justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-red-100 text-red-600 text-[10px] font-black rounded uppercase">Priority: High</span>
+<p class="text-xl font-bold tracking-tight">Emergency: Room 402</p>
+</div>
+<p class="text-slate-500 text-sm font-medium">Patient: <span class="text-slate-900 dark:text-slate-100 font-bold">Marcus Thorne</span> | Distance: <span class="text-primary font-bold">120 meters</span></p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 bg-slate-100 dark:bg-slate-800 rounded-xl font-bold text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Details</button>
+<button class="px-6 py-3 bg-primary text-white rounded-xl font-bold text-sm shadow-lg shadow-primary/30 hover:brightness-105 transition-all">I'm Arrived</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Vitals Side Panel -->
+<aside class="w-full md:w-80 lg:w-96 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h3 class="font-bold text-lg">Live Patient Vitals</h3>
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Vitals Cards -->
+<div class="grid grid-cols-1 gap-4">
+<div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Heart Rate</span>
+<span class="material-symbols-outlined text-red-500">favorite</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black">112</span>
+<span class="text-sm font-medium text-slate-500">BPM</span>
+<div class="ml-auto flex items-center text-red-500 text-xs font-bold">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+15%</span>
+</div>
+</div>
+<div class="mt-4 h-12 flex items-end gap-1">
+<div class="w-1 bg-red-400/30 rounded-full h-8"></div>
+<div class="w-1 bg-red-400/40 rounded-full h-10"></div>
+<div class="w-1 bg-red-400/60 rounded-full h-6"></div>
+<div class="w-1 bg-red-500 rounded-full h-12"></div>
+<div class="w-1 bg-red-500 rounded-full h-11"></div>
+<div class="w-1 bg-red-500 rounded-full h-12"></div>
+<div class="w-1 bg-red-500 rounded-full h-9"></div>
+</div>
+</div>
+<div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">SpO2</span>
+<span class="material-symbols-outlined text-blue-500">water_drop</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black">94</span>
+<span class="text-sm font-medium text-slate-500">%</span>
+<div class="ml-auto flex items-center text-red-500 text-xs font-bold">
+<span class="material-symbols-outlined text-xs">trending_down</span>
+<span>-2%</span>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Blood Pressure</span>
+<span class="material-symbols-outlined text-emerald-500">monitor_heart</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black">145/95</span>
+<span class="text-sm font-medium text-slate-500">mmHg</span>
+</div>
+</div>
+</div>
+<!-- Emergency Instructions -->
+<div class="space-y-4 pt-4">
+<h4 class="font-bold text-sm uppercase tracking-wider text-slate-400">Emergency Protocols</h4>
+<div class="space-y-3">
+<div class="flex gap-4 p-3 rounded-xl bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20">
+<div class="size-8 rounded-lg bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-sm">bolt</span>
+</div>
+<div>
+<p class="text-sm font-bold text-red-900 dark:text-red-200">Prepare Defibrillator</p>
+<p class="text-xs text-red-700/70 dark:text-red-300/60 leading-relaxed">Arrive at Room 402 with AED unit immediately.</p>
+</div>
+</div>
+<div class="flex gap-4 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="size-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-sm">medication</span>
+</div>
+<div>
+<p class="text-sm font-bold">Administer Epinephrine</p>
+<p class="text-xs text-slate-500 leading-relaxed">Check patient record for allergies before dosage.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800">
+<button class="w-full py-3 bg-background-dark dark:bg-primary text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">call</span>
+                        Contact Ward Nurse
+                    </button>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

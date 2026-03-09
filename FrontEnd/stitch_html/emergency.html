@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00cbe6",
+                        "emergency": "#ef4444",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2123",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .emergency-pulse {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+<title>Healance Emergency Mode</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-white dark:bg-background-dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 py-3 bg-white dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-6 text-emergency">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Healance</h2>
+<div class="ml-2 px-2 py-0.5 bg-emergency text-white text-[10px] font-bold uppercase rounded tracking-wider">Active Alert</div>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<button class="flex items-center justify-center rounded-lg h-10 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 px-3 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqnmAIWVW4vegwRW4AxD4cZVIcEBC2kcvlTQzMTGbDogxQqJOw0-xhMsryp_n1YW3X8L077tCRiJNmEdyEH7rEBMMDNQX1OTnmxW4mn4ebfWNJb2KH_gCF8IUCTJwQPrhS2m0CGxONGreUdxLOkYPaD6_rKka9XGwSiX_oxJXUMH3JT5nw0I5EG-c4TEvJXoChxNXIq4lr4jiQOTyyI5_a0Vn2X7LmEP1difPE29kA0IMmNa4frJdrV2WnXWKPy6tYAhct-fJ8qag");'></div>
+</div>
+</header>
+<main class="flex flex-1 flex-col items-center px-4 py-8 md:px-20 lg:px-40">
+<div class="layout-content-container flex flex-col max-w-[800px] w-full gap-6">
+<!-- Status Header -->
+<div class="flex flex-col gap-3 p-6 bg-red-50 dark:bg-red-950/20 rounded-xl border border-red-100 dark:border-red-900/30">
+<div class="flex items-center justify-between">
+<h1 class="text-emergency text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Emergency Mode Active</h1>
+<div class="animate-pulse bg-emergency rounded-full size-3"></div>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-base font-medium">Medical emergency detected. Help has been dispatched to your current coordinates.</p>
+</div>
+<!-- Doctor Dispatch Tracking -->
+<div class="p-6 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
+<div class="flex flex-col @container">
+<div class="flex flex-col items-stretch justify-start @xl:flex-row @xl:items-start gap-6">
+<div class="relative w-full @xl:w-1/2 bg-slate-200 dark:bg-slate-800 aspect-video rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700" data-alt="Map showing doctor current location" data-location="San Francisco" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6UG5FSZ04k7dlQT1Q9L9wLQY-qhAUN8usQtMgpP1iHZnSl1M2vlNOvouohLU7JyOB5PLXUTs1QI9XCmpvT8_HLfDey7Y1mPhoQ2uNINd5f7UZGI4qo23Z_6l9oV72ikFR4hdyderqj3T4HKaI5piAeqarfzkHN5x499lWvsCHyjXsfvVSXXjTeeq65jsdio2l-2wS40IrWugURdodnqPIia1hDTYSnTldyri7AuNhOd1jcoXCz6PR_L4SWsgxG6j_tg9AThxfKxI");'>
+<div class="absolute inset-0 bg-slate-900/10"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="flex items-center justify-center p-2 bg-primary text-white rounded-full shadow-lg emergency-pulse">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+</div>
+<button class="absolute bottom-3 right-3 flex items-center justify-center rounded-lg h-9 px-4 bg-white/90 backdrop-blur text-slate-900 text-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-sm mr-1">map</span> Expand Map
+                                </button>
+</div>
+<div class="flex flex-1 flex-col justify-between py-2">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-primary/20 text-primary text-xs font-bold rounded uppercase">In Route</span>
+<span class="text-slate-400 dark:text-slate-500 text-xs">â¢</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm">Priority Dispatch</span>
+</div>
+<h3 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight">Doctor ETA: 4 Minutes</h3>
+<p class="text-slate-600 dark:text-slate-400 text-base">Dr. Sarah Mitchell is currently 1.2 miles away and moving towards you.</p>
+</div>
+<div class="mt-6 flex flex-col gap-3">
+<div class="flex justify-between items-end mb-1">
+<span class="text-slate-900 dark:text-slate-100 text-sm font-bold">Progress</span>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium">850m remaining</span>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 75%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI First Aid Instructions -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border-l-4 border-emergency shadow-sm p-6 space-y-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-emergency/10 rounded-lg text-emergency">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold">AI First Aid Assistant</h2>
+</div>
+<div class="space-y-3">
+<p class="text-slate-700 dark:text-slate-300 font-medium">Follow these steps immediately while you wait:</p>
+<ul class="space-y-4">
+<li class="flex gap-4 items-start">
+<span class="flex-none flex items-center justify-center size-6 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold">1</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Ensure the patient is lying on a flat surface and is breathing normally.</p>
+</li>
+<li class="flex gap-4 items-start">
+<span class="flex-none flex items-center justify-center size-6 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold">2</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Loosen any tight clothing around the neck or waist to assist blood flow.</p>
+</li>
+<li class="flex gap-4 items-start">
+<span class="flex-none flex items-center justify-center size-6 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold">3</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-bold text-slate-900 dark:text-slate-100">Keep the patient warm and do not give them anything to drink.</p>
+</li>
+</ul>
+</div>
+</div>
+<!-- Emergency Contact Controls -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 w-full bg-emergency text-white rounded-xl py-5 font-bold text-lg shadow-lg hover:bg-red-600 transition-transform active:scale-95">
+<span class="material-symbols-outlined">call</span>
+                        Call EMS (911)
+                    </button>
+<button class="flex items-center justify-center gap-3 w-full bg-primary text-slate-900 rounded-xl py-5 font-bold text-lg shadow-lg hover:bg-primary/90 transition-transform active:scale-95">
+<span class="material-symbols-outlined">video_chat</span>
+                        Contact Doctor
+                    </button>
+</div>
+<!-- Sidebar / Bottom Actions -->
+<div class="flex flex-col md:flex-row gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 mt-4">
+<button class="flex-1 flex items-center justify-center gap-2 rounded-lg h-12 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-lg">share_location</span>
+                        Share Live Location
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-2 rounded-lg h-12 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-lg">medical_information</span>
+                        Emergency Medical ID
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-2 rounded-lg h-12 border-2 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 text-sm font-bold hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-all">
+<span class="material-symbols-outlined text-lg">close</span>
+                        Cancel Alert
+                    </button>
+</div>
+<!-- Quick Access Footer -->
+<div class="mt-8 flex justify-center gap-8">
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<div class="size-12 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center border border-slate-100 dark:border-slate-700 shadow-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 group-hover:text-primary">home</span>
+</div>
+<span class="text-xs font-medium text-slate-500">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<div class="size-12 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center border border-slate-100 dark:border-slate-700 shadow-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 group-hover:text-primary">pulse_alert</span>
+</div>
+<span class="text-xs font-medium text-slate-500">Health</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<div class="size-12 rounded-full bg-primary flex items-center justify-center border border-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-slate-900">emergency</span>
+</div>
+<span class="text-xs font-bold text-primary">Emergency</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<div class="size-12 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center border border-slate-100 dark:border-slate-700 shadow-sm group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 group-hover:text-primary">settings</span>
+</div>
+<span class="text-xs font-medium text-slate-500">Settings</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
