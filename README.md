@@ -198,23 +198,3 @@ Logs include:
 * **Python Logging**
 * **CORS**
 
----
-
-# 📌 Future Improvements
-
-* Patient dashboard
-* Notification system
-* WebSocket patient monitoring UI
-* AI medical report generation
-
----
-
-# 👨‍💻 Author
-
-Developed for the **ITC Challenge Project**.
-
----
-
-# 📄 License
-
-This project is licensed under the MIT License.
