@@ -354,7 +354,7 @@ def run_single(agent: MedGuardAgent, sensor: KiomiSimulator):
 def lhdra_m3a_lai(message):
     # -- API key
 
-    api_key = "AIzaSyAejIkIqEf725n3Di29XMAofAbCz-P7rco"
+    api_key = ""
 
     # -- Load knowledge base
     print(f"\n[MedGuard] Loading knowledge base from '{KB_PATH}'...")
