@@ -1,0 +1,13 @@
+from datetime import datetime
+from app.extensions import db
+class TokenBlocklist(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    jti = db.Column(db.String(), nullable=True)
+    create_at = db.Column(db.DateTime(), default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Token {self.jti}>"
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

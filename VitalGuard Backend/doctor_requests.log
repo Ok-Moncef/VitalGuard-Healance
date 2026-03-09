@@ -1,0 +1,5 @@
+2026-03-09 01:06:07,117 - WARNING - Unauthorized access attempt by user_id=d22aaeca-6779-4413-b5bd-bc2c22dfdfe4 role=patient
+2026-03-09 15:24:04,372 - INFO - Admin user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6 retrieved list of 2 doctors
+2026-03-09 15:24:51,065 - INFO - Admin user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6 retrieved list of 2 doctors
+2026-03-09 15:30:04,014 - ERROR - Admin user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6 tried to approve non-existent doctor_id=fd4b0754-3109-4a43-907c-3e9567de629d
+2026-03-09 15:30:56,267 - INFO - Admin user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6 approved doctor_id=fd4b0754-3109-4a43-907c-3e9567de629d

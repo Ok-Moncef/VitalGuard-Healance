@@ -1,0 +1,358 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-03-07",
+    "description": "Medical knowledge base for MedGuard RAG Agent — patient vitals evaluation and emergency first aid"
+  },
+
+  "vital_signs": {
+    "heart_rate": {
+      "unit": "bpm",
+      "ranges": {
+        "critical_low":  { "max": 40,  "label": "Critical Low"  },
+        "warning_low":   { "min": 41,  "max": 59,  "label": "Warning Low"   },
+        "normal":        { "min": 60,  "max": 100, "label": "Normal"        },
+        "warning_high":  { "min": 101, "max": 129, "label": "Warning High"  },
+        "critical_high": { "min": 130, "label": "Critical High" }
+      },
+      "notes": "Resting HR. Athletes may have lower baseline (40-60 bpm) without pathology."
+    },
+    "spo2": {
+      "unit": "%",
+      "ranges": {
+        "critical_low":  { "max": 90,  "label": "Critical Low — Severe Hypoxia" },
+        "warning_low":   { "min": 91,  "max": 94, "label": "Warning Low — Mild Hypoxia" },
+        "normal":        { "min": 95,  "max": 100,"label": "Normal" }
+      },
+      "notes": "SpO2 has no high-end concern. Values below 90% require immediate intervention."
+    },
+    "systolic_bp": {
+      "unit": "mmHg",
+      "ranges": {
+        "critical_low":  { "max": 70,  "label": "Critical Low — Shock"           },
+        "warning_low":   { "min": 71,  "max": 89, "label": "Warning Low — Hypotension" },
+        "normal":        { "min": 90,  "max": 120,"label": "Normal"               },
+        "warning_high":  { "min": 121, "max": 179,"label": "Warning High — Elevated" },
+        "critical_high": { "min": 180, "label": "Critical High — Hypertensive Crisis" }
+      }
+    },
+    "diastolic_bp": {
+      "unit": "mmHg",
+      "ranges": {
+        "critical_low":  { "max": 40,  "label": "Critical Low"  },
+        "warning_low":   { "min": 41,  "max": 59, "label": "Warning Low"   },
+        "normal":        { "min": 60,  "max": 80, "label": "Normal"        },
+        "warning_high":  { "min": 81,  "max": 119,"label": "Warning High"  },
+        "critical_high": { "min": 120, "label": "Critical High" }
+      }
+    },
+    "temperature": {
+      "unit": "°C",
+      "ranges": {
+        "critical_low":  { "max": 35.0, "label": "Critical Low — Hypothermia"   },
+        "warning_low":   { "min": 35.1, "max": 36.0, "label": "Warning Low — Mild Hypothermia" },
+        "normal":        { "min": 36.1, "max": 37.2, "label": "Normal"          },
+        "warning_high":  { "min": 37.3, "max": 39.4, "label": "Warning High — Fever" },
+        "critical_high": { "min": 39.5, "label": "Critical High — High Fever / Hyperthermia" }
+      }
+    },
+    "respiratory_rate": {
+      "unit": "breaths/min",
+      "ranges": {
+        "critical_low":  { "max": 8,  "label": "Critical Low — Respiratory Depression" },
+        "warning_low":   { "min": 9,  "max": 11, "label": "Warning Low — Bradypnea" },
+        "normal":        { "min": 12, "max": 20, "label": "Normal"                  },
+        "warning_high":  { "min": 21, "max": 29, "label": "Warning High — Tachypnea" },
+        "critical_high": { "min": 30, "label": "Critical High — Severe Respiratory Distress" }
+      }
+    },
+    "blood_glucose": {
+      "unit": "mg/dL",
+      "ranges": {
+        "critical_low":  { "max": 50,  "label": "Critical Low — Severe Hypoglycemia" },
+        "warning_low":   { "min": 51,  "max": 69, "label": "Warning Low — Hypoglycemia" },
+        "normal":        { "min": 70,  "max": 140,"label": "Normal"                    },
+        "warning_high":  { "min": 141, "max": 299,"label": "Warning High — Hyperglycemia" },
+        "critical_high": { "min": 300, "label": "Critical High — Diabetic Emergency / DKA" }
+      }
+    }
+  },
+
+  "condition_patterns": [
+    {
+      "id": "hypoxia",
+      "name": "Hypoxia / Respiratory Distress",
+      "severity": "WARNING_TO_CRITICAL",
+      "indicators": {
+        "spo2": "< 94",
+        "respiratory_rate": "> 22"
+      },
+      "description": "Low blood oxygen combined with fast breathing suggests the body is struggling to oxygenate. May indicate respiratory distress, asthma attack, pneumonia, or early heart failure."
+    },
+    {
+      "id": "shock",
+      "name": "Circulatory Shock",
+      "severity": "CRITICAL",
+      "indicators": {
+        "heart_rate": "> 120",
+        "systolic_bp": "< 90"
+      },
+      "description": "Rapid heart rate with dangerously low blood pressure. Organs are not receiving adequate blood flow. Life-threatening — requires immediate emergency response."
+    },
+    {
+      "id": "cardiac_event",
+      "name": "Suspected Cardiac Event (Heart Attack)",
+      "severity": "CRITICAL",
+      "indicators": {
+        "heart_rate": "> 110 or irregular pattern",
+        "systolic_bp": "> 150 or < 90",
+        "spo2": "< 94"
+      },
+      "description": "Combination of abnormal HR, BP, and low SpO2 may indicate myocardial infarction (heart attack). Time-critical — every minute counts."
+    },
+    {
+      "id": "cardiac_arrest",
+      "name": "Cardiac Arrest",
+      "severity": "CRITICAL",
+      "indicators": {
+        "heart_rate": "< 30",
+        "spo2": "< 80",
+        "systolic_bp": "< 60"
+      },
+      "description": "Near-absent vitals suggest cardiac arrest. Patient is likely unconscious and not breathing. CPR must begin immediately."
+    },
+    {
+      "id": "hypoglycemia",
+      "name": "Hypoglycemia (Low Blood Sugar)",
+      "severity": "WARNING_TO_CRITICAL",
+      "indicators": {
+        "blood_glucose": "< 70",
+        "heart_rate": "> 100"
+      },
+      "description": "Low blood glucose with elevated HR. Patient may feel confused, shaky, or faint. Below 50 mg/dL is an emergency — brain function is at risk."
+    },
+    {
+      "id": "hyperglycemia_dka",
+      "name": "Hyperglycemia / Diabetic Ketoacidosis (DKA)",
+      "severity": "WARNING_TO_CRITICAL",
+      "indicators": {
+        "blood_glucose": "> 250",
+        "respiratory_rate": "> 22"
+      },
+      "description": "Very high glucose with fast breathing (Kussmaul breathing) may indicate DKA in diabetic patients. Requires urgent medical attention."
+    },
+    {
+      "id": "hypertensive_crisis",
+      "name": "Hypertensive Crisis",
+      "severity": "CRITICAL",
+      "indicators": {
+        "systolic_bp": "> 180",
+        "diastolic_bp": "> 120"
+      },
+      "description": "Extremely high blood pressure can cause stroke, heart attack, or organ damage. Patient must rest and be seen by a doctor immediately."
+    },
+    {
+      "id": "sepsis",
+      "name": "Suspected Sepsis",
+      "severity": "CRITICAL",
+      "indicators": {
+        "temperature": "> 39.0 or < 36.0",
+        "heart_rate": "> 120",
+        "respiratory_rate": "> 25"
+      },
+      "description": "High/low temperature combined with fast HR and breathing is a classic sepsis triad. Sepsis is life-threatening and requires immediate hospitalization."
+    },
+    {
+      "id": "hypothermia",
+      "name": "Hypothermia",
+      "severity": "WARNING_TO_CRITICAL",
+      "indicators": {
+        "temperature": "< 35.0"
+      },
+      "description": "Body temperature is dangerously low. Core body functions begin to slow down. Critical below 32°C."
+    }
+  ],
+
+  "recommendations": {
+    "low_spo2_mild": {
+      "applies_to": "spo2 between 91-94%",
+      "severity": "WARNING",
+      "actions": [
+        "Open windows or doors to improve ventilation and fresh air flow",
+        "Have the patient sit upright or lean slightly forward — do not lay flat",
+        "Remove any tight clothing around chest or neck",
+        "Avoid any physical exertion",
+        "If patient has a prescribed inhaler, assist them in using it",
+        "Monitor SpO2 closely every 2-3 minutes",
+        "If SpO2 drops below 90% or patient feels worse — call emergency services immediately"
+      ]
+    },
+    "low_temperature": {
+      "applies_to": "temperature between 35.0-36.0°C",
+      "severity": "WARNING",
+      "actions": [
+        "Move patient to a warm indoor environment",
+        "Apply warm blankets, focus on covering the torso and neck",
+        "If conscious and able to swallow: offer warm (not hot) drinks",
+        "Avoid direct heat sources like electric heaters directly on skin",
+        "Monitor temperature every 10 minutes"
+      ]
+    },
+    "high_temperature_fever": {
+      "applies_to": "temperature between 38.0-39.4°C",
+      "severity": "WARNING",
+      "actions": [
+        "Remove excess clothing and heavy blankets",
+        "Apply cool (not cold) damp cloth to forehead, neck, and wrists",
+        "Encourage fluid intake — water or oral rehydration solution",
+        "Ensure the room is well-ventilated",
+        "Paracetamol (acetaminophen) can help reduce fever if not contraindicated",
+        "Seek medical advice if fever persists more than 48 hours or exceeds 39.5°C"
+      ]
+    },
+    "high_blood_pressure": {
+      "applies_to": "systolic BP between 140-179 mmHg",
+      "severity": "WARNING",
+      "actions": [
+        "Have the patient rest in a quiet, calm environment",
+        "Encourage slow, deep breathing (4 seconds in, 4 seconds out)",
+        "Avoid caffeine, stimulants, and physical activity",
+        "Do NOT give extra blood pressure medication without medical instruction",
+        "Recheck BP in 15-20 minutes",
+        "If BP exceeds 180 mmHg — call emergency services"
+      ]
+    },
+    "low_glucose_mild": {
+      "applies_to": "blood glucose between 51-69 mg/dL",
+      "severity": "WARNING",
+      "actions": [
+        "Give 15g of fast-acting carbohydrates immediately: fruit juice (150ml), glucose tablets, or 3-4 teaspoons of sugar dissolved in water",
+        "Have patient sit or lie down",
+        "Recheck blood glucose after 15 minutes",
+        "If glucose remains low: repeat carbohydrate intake",
+        "Once glucose normalizes: give a small snack (crackers, bread) to maintain levels",
+        "If patient becomes confused or loses consciousness — call emergency services immediately and do NOT give anything orally"
+      ]
+    },
+    "high_respiratory_rate": {
+      "applies_to": "respiratory rate between 21-25 breaths/min",
+      "severity": "WARNING",
+      "actions": [
+        "Ask patient to consciously slow their breathing",
+        "Guide them through diaphragmatic breathing: breathe in slowly for 4 seconds, hold 2 seconds, out for 6 seconds",
+        "Have patient sit upright",
+        "Reduce anxiety and stress in the environment — stay calm, speak reassuringly",
+        "Ensure the room has good ventilation",
+        "Monitor for worsening — if rate exceeds 28 or patient struggles to breathe, call emergency services"
+      ]
+    }
+  },
+
+  "emergency_protocols": {
+    "heart_attack": {
+      "condition": "Suspected Heart Attack",
+      "triggers": "Abnormal HR + elevated or low BP + low SpO2 + possible chest pain",
+      "call_emergency": true,
+      "target_audience": "bystander",
+      "steps": [
+        "Call emergency services (112 or your local emergency number) IMMEDIATELY — do not wait",
+        "Have the patient stop all activity and sit or lie in a semi-reclined position (not flat)",
+        "Loosen any tight clothing: collar, tie, belt",
+        "If the patient is conscious, not allergic to aspirin, and can swallow: give 300mg Aspirin — have them chew it, not swallow whole",
+        "Stay with the patient, speak calmly, and reassure them — stress makes the heart work harder",
+        "Do not give food or water",
+        "If the patient loses consciousness and stops breathing — begin CPR immediately (see cardiac_arrest protocol)"
+      ],
+      "warning_signs_to_watch": [
+        "Sudden loss of consciousness",
+        "Stopped breathing",
+        "No detectable pulse",
+        "Blue lips or fingertips (cyanosis)"
+      ]
+    },
+    "cardiac_arrest": {
+      "condition": "Cardiac Arrest",
+      "triggers": "Very low HR (<30 bpm), very low BP, very low SpO2, patient unconscious and not breathing",
+      "call_emergency": true,
+      "target_audience": "bystander",
+      "steps": [
+        "Call emergency services IMMEDIATELY — put the phone on speaker so you can follow instructions",
+        "Check if the patient is conscious: tap shoulders and shout 'Are you okay?'",
+        "Check for breathing: look for chest movement for no more than 10 seconds",
+        "If not breathing normally — begin CPR immediately:",
+        "  - Place heel of hand on center of chest (lower half of breastbone)",
+        "  - Place other hand on top, interlace fingers",
+        "  - Push down HARD and FAST — at least 5cm depth, 100-120 times per minute",
+        "  - After 30 compressions: give 2 rescue breaths (tilt head back, pinch nose, seal mouth, breathe in for 1 second)",
+        "  - Repeat 30:2 cycle continuously until help arrives",
+        "If an AED (defibrillator) is nearby: send someone to get it — turn it on and follow the audio instructions",
+        "Do not stop CPR until paramedics arrive and take over"
+      ],
+      "warning_signs_to_watch": [
+        "No pulse",
+        "No breathing",
+        "Unconscious and unresponsive"
+      ]
+    },
+    "severe_respiratory_distress": {
+      "condition": "Severe Hypoxia / Respiratory Distress",
+      "triggers": "SpO2 <= 90% or respiratory rate >= 30",
+      "call_emergency": true,
+      "target_audience": "bystander",
+      "steps": [
+        "Call emergency services immediately",
+        "Sit the patient upright — leaning slightly forward ('tripod position') helps open the airways",
+        "Open all windows and doors to maximize fresh air in the room",
+        "Loosen any tight clothing around chest, neck, or abdomen",
+        "If the patient has a prescribed inhaler (e.g. for asthma) — help them use it now",
+        "Do NOT give food or water",
+        "Do NOT leave the patient alone",
+        "If patient loses consciousness — place in recovery position (on their side) and monitor breathing"
+      ]
+    },
+    "severe_hypoglycemia": {
+      "condition": "Severe Hypoglycemia",
+      "triggers": "Blood glucose < 50 mg/dL, possible confusion or loss of consciousness",
+      "call_emergency": true,
+      "target_audience": "bystander",
+      "steps": [
+        "Call emergency services if patient is confused, cannot swallow safely, or unconscious",
+        "If patient is conscious and can swallow: give glucose gel, fruit juice (150ml), or sugary drink immediately",
+        "Do NOT give anything orally if patient is unconscious or cannot swallow — choking risk",
+        "If a glucagon emergency kit is available and you are trained to use it — administer it now",
+        "Place unconscious patient in recovery position (on their side) to protect airway",
+        "Stay with patient and monitor breathing and consciousness",
+        "Recheck glucose every 5 minutes if meter is available"
+      ]
+    },
+    "hypertensive_crisis": {
+      "condition": "Hypertensive Crisis",
+      "triggers": "Systolic BP >= 180 mmHg or diastolic BP >= 120 mmHg",
+      "call_emergency": true,
+      "target_audience": "bystander",
+      "steps": [
+        "Call emergency services",
+        "Have the patient stop all activity immediately and sit or lie down in a quiet room",
+        "Loosen tight clothing",
+        "Keep the environment calm — reduce noise, light, and stress",
+        "Do NOT give extra blood pressure medications without direct medical instruction",
+        "Watch for stroke symptoms: facial drooping, arm weakness, slurred speech — if present, tell emergency services immediately",
+        "Do not give food, water, or stimulants (coffee, cigarettes)"
+      ]
+    },
+    "sepsis": {
+      "condition": "Suspected Sepsis",
+      "triggers": "High/low temperature + heart rate > 120 + respiratory rate > 25",
+      "call_emergency": true,
+      "target_audience": "bystander",
+      "steps": [
+        "Call emergency services immediately — sepsis can become fatal within hours",
+        "Note the time symptoms started — this is critical information for doctors",
+        "Keep patient warm and as comfortable as possible",
+        "Do not give food or water",
+        "Monitor breathing and consciousness continuously",
+        "If patient has prescribed antibiotics and doctor has authorized early self-administration — follow those instructions"
+      ]
+    }
+  }
+}

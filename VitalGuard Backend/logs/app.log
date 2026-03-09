@@ -1,0 +1,101 @@
+2026-03-09 16:38:42,532 [INFO] app: Application startup initiated
+2026-03-09 16:38:43,441 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:38:43,446 [INFO] app: Application setup completed successfully
+2026-03-09 16:38:43,485 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 16:38:43,486 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-03-09 16:38:43,486 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:38:44,202 [INFO] app: Application startup initiated
+2026-03-09 16:38:44,959 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:38:44,962 [INFO] app: Application setup completed successfully
+2026-03-09 16:38:44,966 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:38:44,968 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:39:23,090 [INFO] app: Application startup initiated
+2026-03-09 16:39:23,868 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:39:23,871 [INFO] app: Application setup completed successfully
+2026-03-09 16:39:23,879 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 16:39:23,879 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-03-09 16:39:23,879 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:39:24,580 [INFO] app: Application startup initiated
+2026-03-09 16:39:25,328 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:39:25,331 [INFO] app: Application setup completed successfully
+2026-03-09 16:39:25,335 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:39:25,338 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:39:44,684 [WARNING] app: Expired token used by identity fd4b0754-3109-4a43-907c-3e9567de629d
+2026-03-09 16:39:44,684 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:39:44] "[31m[1mGET /doctor/dashboard HTTP/1.1[0m" 401 -
+2026-03-09 16:40:07,262 [INFO] auth: Login attempt for email=samir.mahdi@example.com
+2026-03-09 16:40:07,526 [INFO] app: Additional claims added for user fd4b0754-3109-4a43-907c-3e9567de629d: {'is_staff': False}
+2026-03-09 16:40:07,527 [INFO] app: Additional claims added for user fd4b0754-3109-4a43-907c-3e9567de629d: {'is_staff': False}
+2026-03-09 16:40:07,527 [INFO] auth: Login successful for user_id=fd4b0754-3109-4a43-907c-3e9567de629d, email=samir.mahdi@example.com
+2026-03-09 16:40:07,527 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:40:07] "POST /auth/login HTTP/1.1" 200 -
+2026-03-09 16:40:31,963 [INFO] auth: Login attempt for email=samir.mahdi@example.com
+2026-03-09 16:40:32,182 [INFO] app: Additional claims added for user fd4b0754-3109-4a43-907c-3e9567de629d: {'is_staff': False}
+2026-03-09 16:40:32,183 [INFO] app: Additional claims added for user fd4b0754-3109-4a43-907c-3e9567de629d: {'is_staff': False}
+2026-03-09 16:40:32,183 [INFO] auth: Login successful for user_id=fd4b0754-3109-4a43-907c-3e9567de629d, email=samir.mahdi@example.com
+2026-03-09 16:40:32,183 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:40:32] "POST /auth/login HTTP/1.1" 200 -
+2026-03-09 16:40:42,654 [INFO] app: JWT lookup: Found user fd4b0754-3109-4a43-907c-3e9567de629d
+2026-03-09 16:40:42,654 [INFO] doctor.dashboard: Dashboard accessed by user_id=fd4b0754-3109-4a43-907c-3e9567de629d, role=doctor
+2026-03-09 16:40:42,662 [INFO] doctor.dashboard: Found 1 patients for doctor Dr. Samir Mahdi
+2026-03-09 16:40:42,664 [INFO] doctor.dashboard: Dashboard response ready for doctor Dr. Samir Mahdi
+2026-03-09 16:40:42,664 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:40:42] "GET /doctor/dashboard HTTP/1.1" 200 -
+2026-03-09 16:43:37,048 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:43:37] "[31m[1mGET /doctor/add_patient HTTP/1.1[0m" 405 -
+2026-03-09 16:43:40,916 [INFO] app: JWT lookup: Found user fd4b0754-3109-4a43-907c-3e9567de629d
+2026-03-09 16:43:40,917 [INFO] doctor.patient_manag: Add patient request by user_id=fd4b0754-3109-4a43-907c-3e9567de629d, role=doctor
+2026-03-09 16:43:41,136 [ERROR] doctor.patient_manag: Error adding patient by doctor Dr. Samir Mahdi: 'fullname'
+Traceback (most recent call last):
+  File "c:\Users\Administrator\Desktop\Project ITC Challenge\flask\app\routes\doctor\patient_manag.py", line 38, in sign_patient
+    fullname=data['fullname'],
+             ~~~~^^^^^^^^^^^^
+KeyError: 'fullname'
+2026-03-09 16:43:41,136 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:43:41] "[35m[1mPOST /doctor/add_patient HTTP/1.1[0m" 500 -
+2026-03-09 16:45:41,953 [INFO] werkzeug:  * Detected change in 'c:\\Users\\Administrator\\Desktop\\Project ITC Challenge\\flask\\app\\routes\\doctor\\patient_manag.py', reloading
+2026-03-09 16:45:42,161 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:45:42,947 [INFO] app: Application startup initiated
+2026-03-09 16:45:43,739 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:45:43,745 [INFO] app: Application setup completed successfully
+2026-03-09 16:45:43,749 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:45:43,752 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:45:44,766 [INFO] werkzeug:  * Detected change in 'c:\\Users\\Administrator\\Desktop\\Project ITC Challenge\\flask\\app\\routes\\doctor\\patient_manag.py', reloading
+2026-03-09 16:45:44,953 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:45:45,670 [INFO] app: Application startup initiated
+2026-03-09 16:45:46,441 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:45:46,445 [INFO] app: Application setup completed successfully
+2026-03-09 16:45:46,449 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:45:46,452 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:47:55,368 [INFO] auth: Login attempt for email=francis@example.com
+2026-03-09 16:47:55,659 [INFO] app: Additional claims added for user 5dabe205-cdec-47b0-9059-4e86872e6ad6: {'is_staff': False}
+2026-03-09 16:47:55,660 [INFO] app: Additional claims added for user 5dabe205-cdec-47b0-9059-4e86872e6ad6: {'is_staff': False}
+2026-03-09 16:47:55,661 [INFO] auth: Login successful for user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6, email=francis@example.com
+2026-03-09 16:47:55,661 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:47:55] "POST /auth/login HTTP/1.1" 200 -
+2026-03-09 16:48:35,570 [INFO] werkzeug:  * Detected change in 'c:\\Users\\Administrator\\Desktop\\Project ITC Challenge\\flask\\app\\routes\\doctor\\patient_manag.py', reloading
+2026-03-09 16:48:35,744 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:48:36,487 [INFO] app: Application startup initiated
+2026-03-09 16:48:37,284 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:48:37,287 [INFO] app: Application setup completed successfully
+2026-03-09 16:48:37,291 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:48:37,294 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:50:50,211 [INFO] werkzeug:  * Detected change in 'c:\\Users\\Administrator\\Desktop\\Project ITC Challenge\\flask\\app\\routes\\controllers\\checkDoctors.py', reloading
+2026-03-09 16:50:50,390 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:50:51,141 [INFO] app: Application startup initiated
+2026-03-09 16:50:51,949 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:50:51,952 [INFO] app: Application setup completed successfully
+2026-03-09 16:50:51,957 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:50:51,960 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:51:40,804 [INFO] app: JWT lookup: Found user 5dabe205-cdec-47b0-9059-4e86872e6ad6
+2026-03-09 16:51:40,806 [INFO] controllers.checkDoctors: Admin user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6 retrieved list of 1 doctors
+2026-03-09 16:51:40,807 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:51:40] "GET /admin/lst_Requested_doctors HTTP/1.1" 200 -
+2026-03-09 16:52:32,682 [INFO] werkzeug:  * Detected change in 'c:\\Users\\Administrator\\Desktop\\Project ITC Challenge\\flask\\app\\routes\\controllers\\checkDoctors.py', reloading
+2026-03-09 16:52:32,864 [INFO] werkzeug:  * Restarting with stat
+2026-03-09 16:52:33,589 [INFO] app: Application startup initiated
+2026-03-09 16:52:34,369 [INFO] doctor: Doctor blueprint initialized and routes registered
+2026-03-09 16:52:34,372 [INFO] app: Application setup completed successfully
+2026-03-09 16:52:34,376 [WARNING] werkzeug:  * Debugger is active!
+2026-03-09 16:52:34,379 [INFO] werkzeug:  * Debugger PIN: 370-838-389
+2026-03-09 16:53:59,651 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:53:59] "[31m[1mGET /admin/approve_doctor HTTP/1.1[0m" 405 -
+2026-03-09 16:54:02,882 [INFO] app: JWT lookup: Found user 5dabe205-cdec-47b0-9059-4e86872e6ad6
+2026-03-09 16:54:02,890 [INFO] controllers.checkDoctors: Admin user_id=5dabe205-cdec-47b0-9059-4e86872e6ad6 approved doctor_id=fed332ba-eaec-4edc-8248-c9e5e1964019
+2026-03-09 16:54:02,891 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 16:54:02] "POST /admin/approve_doctor HTTP/1.1" 200 -
+2026-03-09 16:59:56,147 [INFO] chat: POST /message received: hi
+2026-03-09 17:00:01,161 [INFO] chat: Bot response: {'triage_level': 'STABLE', 'vitals': {'heart_rate': 75.9, 'spo2': 97.6, 'systolic_bp': 118.4, 'diastolic_bp': 77.3, 'temperature': 36.7, 'respiratory_rate': 14.7, 'blood_glucose': 94.7, 'timestamp': '2026-03-09T16:59:56.163552'}, 'assessment': "**1. Condition Assessment**:\nYour current vital signs are all within normal and healthy ranges. This indicates that your body's key functions are operating optimally at this time.\n\n**2. Severity**:\n**STABLE**. All monitored vital signs (Heart Rate, SpO2, Blood Pressure, Temperature, Respiratory Rate, Blood Glucose) are within the normal ranges provided in the medical knowledge base. There are no warning or critical patterns detected.\n\n**3. Recommendations / First Aid Steps**:\nSince all your vitals are stable and within normal limits, no immediate first-aid is required. To maintain your good health:\n1.  Continue to monitor your vital signs regularly as advised by your healthcare provider.\n2.  Maintain a balanced diet, stay hydrated, and ensure you get adequate rest.\n3.  Engage in regular physical activity suitable for your fitness level.\n4.  If you have any underlying health conditions or medications, continue to follow your doctor's advice.\n\n**4. When to call emergency services**:\nPlease call emergency services immediately (e.g., 911 or your local emergency number) if you experience any sudden worsening of symptoms, develop new concerning symptoms, or if your future vital readings fall into critical ranges. Remember, this AI assistant does not replace professional medical care."}
+2026-03-09 17:00:01,161 [INFO] werkzeug: 127.0.0.1 - - [09/Mar/2026 17:00:01] "POST /chat/message HTTP/1.1" 200 -

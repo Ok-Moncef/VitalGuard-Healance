@@ -1,0 +1,11 @@
+CREATE TABLE doctors (
+    doctor_id SERIAL PRIMARY KEY,       -- Unique doctor ID
+    first_name VARCHAR(50) NOT NULL,    -- First name
+    last_name VARCHAR(50) NOT NULL,     -- Last name
+    email VARCHAR(100) UNIQUE NOT NULL, -- Contact email
+    phone VARCHAR(20),                  -- Optional phone number
+    specialization VARCHAR(50),         -- Doctor specialty (e.g., cardiologist)
+    status VARCHAR(20) DEFAULT 'Offline', -- Online/Offline
+    location GEOGRAPHY(Point, 4326),    -- GPS coordinates (lat/lng)
+    updated_at TIMESTAMP DEFAULT NOW()  -- Last updated timestamp
+);
