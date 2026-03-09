@@ -1,6 +1,4 @@
 # VitalGuard-Healance
-# 🏥 MedGuard Backend API
-
 A Flask-based backend for a healthcare monitoring system that supports authentication, doctor verification, live heart rate streaming, and AI-powered chat assistance.
 
 ## 🚀 Features
