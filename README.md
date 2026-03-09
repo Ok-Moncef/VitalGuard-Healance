@@ -83,8 +83,8 @@ A Flask-based backend for a healthcare monitoring system that supports authentic
 ## 1️⃣ Clone the repository
 
 ```
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/yourusername/VitalGuard-Healance.git
+cd VitalGuard-Healance
 ```
 
 ## 2️⃣ Create virtual environment
@@ -122,7 +122,7 @@ Create a `.env` file in the root directory:
 ```
 SECRET_KEY=your_secret_key
 JWT_SECRET_KEY=your_jwt_secret
-DATABASE_URI=sqlite:///database.db
+SQLALCHEMY_DATABASE_URI=postgresql://username:password@localhost:5432/database_name
 ```
 
 ---
