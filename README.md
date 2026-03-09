@@ -34,30 +34,45 @@ A Flask-based backend for a healthcare monitoring system that supports authentic
 
 # 📂 Project Structure
 
-```
-app/
-│
-├── Models/              # Database models
-│   ├── Tokens/
-│
-├── routes/
-│   ├── controllers/
-│   │   ├── auth.py
-│   │   ├── checkDoctors.py
-│   │   ├── liveHeartRate.py
-│   │
-│   ├── doctor/
-│   └── chat_with_bot.py
-│
-├── ai/
-│   └── medguard_rag_agent.py
-│
-├── extensions.py        # Flask extensions (db, jwt, socketio)
-├── config.py            # Application configuration
-├── create_app.py        # App factory
-│
-logs/
-└── app.log
+```+---app
+|   |   config.py
+|   |   extensions.py
+|   |   __init__.py
+|   |   
+|   +---ai
+|   |   |   medguard_rag_agent.py
+|   |   |   medical_knowledge_base.json
+|   |   |   
+|   |           
+|   +---Models
+|   |   |   Doctor.py
+|   |   |   DoctorRequest.py
+|   |   |   Hero.py
+|   |   |   Patient.py
+|   |   |   Tokens.py
+|   |   |   User.py
+|   |   |   __init__.py
+|   |   |   
+|   |           
+|   +---routes
+|   |   |   chat_with_bot.py
+|   |   |   
+|   |   +---controllers
+|   |   |   |   auth.py
+|   |   |   |   checkDoctors.py
+|   |   |   |   liveHeartRate.py
+|   |   |   |   
+|   |   |           
+|   |   +---doctor
+|   |   |   |   dashboard.py
+|   |   |   |   patient_manag.py
+|   |   |   |   __init__.py
+|   |   |   |   
+|   |   |           
+|   |           
+|           
+\---logs
+        app.log
 ```
 
 ---
