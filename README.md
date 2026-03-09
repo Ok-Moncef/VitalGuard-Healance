@@ -34,7 +34,8 @@ A Flask-based backend for a healthcare monitoring system that supports authentic
 
 # 📂 Project Structure
 
-```+---app
+```
++---app
 |   |   config.py
 |   |   extensions.py
 |   |   __init__.py
